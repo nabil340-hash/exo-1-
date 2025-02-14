@@ -23,7 +23,24 @@
         btn.addEventListener("click", function(event) {
             let genderInput = gender.value;
             console.log(genderInput);
+            getData(genderInput)
         });
+        
+        async function getData(genderInput) {
+            const url = "https://randomuser.me/api/?gender=$(genderInput)";
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+                }
+
+                const json = await response.json();
+                console.log(json);
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
     </script>
 </body>
 </html> 
